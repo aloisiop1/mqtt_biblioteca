@@ -25,11 +25,9 @@ public class EmprestimoDevolucao {
 	@Column(name = "datadevolucao")
 	private String dataDevolucao;
 
-//	@ManyToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "codlivro")
 	private Livro livro;
 	
-//	@OneToOne(mappedBy = "codaluno", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "codaluno")
 	private Aluno aluno;
 
