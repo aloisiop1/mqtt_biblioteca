@@ -16,6 +16,8 @@ public class Aluno {
 	
 	@Column(name = "codaluno")
 	private long id;
+	
+	@Column(name = "rm", unique = true, nullable = false)
 	private int rm;	
 	private String nome;
 	private String curso;
