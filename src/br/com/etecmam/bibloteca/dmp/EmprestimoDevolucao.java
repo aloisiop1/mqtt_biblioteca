@@ -96,5 +96,13 @@ public class EmprestimoDevolucao {
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
+
+	@Override
+	public String toString() {
+		return "EmprestimoDevolucao [id=" + id + ", dataEmprestimo=" + dataEmprestimo + ", dataEntrega=" + dataEntrega
+				+ ", dataDevolucao=" + dataDevolucao + ", livro=" + livro + ", aluno=" + aluno + "]";
+	}
+	
+	
 	
 }

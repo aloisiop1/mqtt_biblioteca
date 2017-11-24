@@ -105,6 +105,14 @@ public class Livro {
 		this.editora = editora;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Livro [id=" + id + ", tombo=" + tombo + ", titulo=" + titulo + ", autor=" + autor + ", ano=" + ano
