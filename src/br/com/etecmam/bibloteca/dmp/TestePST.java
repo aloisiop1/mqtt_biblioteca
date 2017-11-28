@@ -2,6 +2,8 @@ package br.com.etecmam.bibloteca.dmp;
 
 import java.util.List;
 
+import br.com.etecmam.bibloteca.dmp.json.GenerosJSON;
+import br.com.etecmam.bibloteca.dmp.json.LivroJSON;
 import br.com.etecmam.bibloteca.pst.LivroPST;
 
 public class TestePST {
@@ -13,18 +15,28 @@ public class TestePST {
 		List<Livro> info = livroPST.getlivrosPorCategoria("Informática");
 
 		for (Livro livro : info) {
-			System.out.println(livro);
+			System.out.println( new LivroJSON(livro).toJson() );
 		}
-		
-		
+				
 		System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------");
 		
-		List<Livro> enf = livroPST.getlivrosPorCategoria("Enfermagem");
-
-		for (Livro livro : enf) {
-			System.out.println(livro);
-		}
-
+		List<String> listaDeGeneros = livroPST.getListaDeGeneros();
+		
+		GenerosJSON generosJSON = new GenerosJSON(listaDeGeneros);
+		
+		System.out.println(generosJSON.toJson());
+		
+		
+		System.out.println("-- CODIGO -------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		
+		Livro livro = livroPST.getlivrosPorCodigo(12345678924L);		
+		System.out.println( new LivroJSON(livro).toJson());
+		
+		System.out.println("-- TOMBO -------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		
+		livro = livroPST.getlivrosPorTombo("591");		
+		System.out.println( new LivroJSON(livro).toJson());
+				
 	}
 
 }
