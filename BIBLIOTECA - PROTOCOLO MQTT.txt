@@ -1,0 +1,32 @@
+---------------------------------------------------------------
+APLICATIVO										SERVIDOR MQTT
+---------------------------------------------------------------
+
+SOLICITAR LISTA DE GÊNEROS ---------------->
+TÓPICO: broker/generos
+PAYLOAD: {"rm":<rm-do-aluno>}
+
+		 <------------------------------------- RESPOSTA
+												TÓPICO: "broker/generos/<rm-do-aluno>
+												PAYLOAD: {"generos":["Enfermagem","Literatura Juvenil","Informática"]}
+										   
+						
+						
+SOLICITAR LIVROS POR GÊNERO --------------->										   
+broker/livros-do-genero/<nome-do-genero>
+PAYLOAD: {"rm":<rm-do-aluno>}				
+
+		 <------------------------------------- RESPOSTA
+												TÓPICO: "broker/resp-livros-do-genero/<rm-do-aluno>"
+												PAYLOAD: 		   
+												{
+												"livros":[
+												{"id":12345678910,"tombo":"591","titulo":"Pediátrica","editora":"Interamericana","autor":"Eugenia H Walchter","ano":1979,"status":"Acervo"},
+												{"id":12345678911,"tombo":"2664","titulo":"Termino1ogia em Enfermagem","editora":"Campus","autor":"Maria Aparecida Modesto dos Santos","ano":2005,"status":"Acervo"},
+												{"id":12345678912,"tombo":"2561","titulo":"SUS e PSF para Enfermagem","editora":"Giracor","autor":"Nebia Maria e Teresa Tonini","ano":2007,"status":"Acervo"},
+												{"id":12345678913,"tombo":"2562","titulo":"Gênero Sexualidade e Saúde: Um Olhar da Enfermagem","editora":"Corpus","autor":"Telma Giovanini","ano":2010,"status":"Acervo"},
+												{"id":12345678914,"tombo":"461","titulo":"Enfermagem Neonatal","editora":"Reichmann","autor":"Carole Kenner","ano":2001,"status":"Acervo"}
+												]
+												}
+										   							
+									
