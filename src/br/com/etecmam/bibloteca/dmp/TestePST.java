@@ -2,8 +2,10 @@ package br.com.etecmam.bibloteca.dmp;
 
 import java.util.List;
 
+import br.com.etecmam.bibloteca.dmp.json.AlunoJSON;
 import br.com.etecmam.bibloteca.dmp.json.GenerosJSON;
 import br.com.etecmam.bibloteca.dmp.json.LivroJSON;
+import br.com.etecmam.bibloteca.pst.AlunoPST;
 import br.com.etecmam.bibloteca.pst.LivroPST;
 
 public class TestePST {
@@ -36,6 +38,11 @@ public class TestePST {
 		
 		livro = livroPST.getlivrosPorTombo("591");		
 		System.out.println( new LivroJSON(livro).toJson());
+		
+		System.out.println("-- ALUNO -------------------------------------------------------------------------------------------------------------------------------------------------------------");
+				
+		Aluno aln = new AlunoPST().getAlunoPorRM(14288);
+		System.out.println( new AlunoJSON(aln).toJson() );
 				
 	}
 
