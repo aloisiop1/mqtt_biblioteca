@@ -17,7 +17,8 @@ public class DadosMQTT {
 		this.usuario = usuario;
 		this.senha = senha;		
 	}
-		
+
+	
 	public String getBroker() {
 		return broker;
 	}
