@@ -45,9 +45,10 @@ public class MQTTDispatcher implements Runnable {
 
 						MqttJSON msg = filaMQTT.get(0);						
 
-						System.out.println("MQTT DISPATCHER - publicando " + msg.getTopico() + 
-								" " + msg.getMensagem() + " " + 
-								Util.getDateTime(ZoneId.of("America/Sao_Paulo"), "dd/MM/yyyy HH:mm:ss") );
+						System.out.println("# MENSAGEM RESPONDIDA \n" +
+											msg.getTopico() + " " + msg.getMensagem() + " " + 
+											Util.getDateTime(ZoneId.of("America/Sao_Paulo"),"dd/MM/yyyy HH:mm:ss") );
+						 
 
 						MqttMessage message = new MqttMessage( msg.getMensagem().getBytes() );
 						message.setQos(2); //qos - qualidade do servico						

@@ -16,8 +16,10 @@ public class MqttReceiver implements MqttCallback {
 	
 	private IProcessaMQTT processaMQTT = null;
 
-	private String topico;
 	private int id;
+	@SuppressWarnings("unused")
+	private String clienteID;
+	private String topico;
 
 	public String getTopico() {
 		return topico;
@@ -27,29 +29,20 @@ public class MqttReceiver implements MqttCallback {
 		this.topico = topico;
 	}
 
-	public MqttReceiver(int id, String topico, IProcessaMQTT processaMQTT) {		
+	public MqttReceiver(int id, String clienteID, String topico, IProcessaMQTT processaMQTT) {		
 		this.id = id;
+		this.clienteID = clienteID;
 		this.topico = topico;
 		this.processaMQTT = processaMQTT;
 		
-		
 		try {
-
-			   
-//			MqttReceiver receiver = new MqttReceiver(1, "broker/generos", processaMQTT );
-			
-			DadosMQTT dadosMQTT = Util.getDadosMQTT();
-			
-			dadosMQTT.setClientId(dadosMQTT.getClientId() + this.getId() );
-			
-			/////////
 
 			MemoryPersistence persistence = new MemoryPersistence();
 			MqttAsyncClient cliente = null;
 
 			System.out.println(Util.getDadosMQTT());
 			
-			cliente = new MqttAsyncClient(dadosMQTT.getBroker(), dadosMQTT.getClientId() , persistence);
+			cliente = new MqttAsyncClient(Util.getDadosMQTT().getBroker(), clienteID , persistence);
 
 			cliente.setCallback(this);
 
@@ -81,45 +74,6 @@ public class MqttReceiver implements MqttCallback {
 		this.id = id;
 	}
 
-	public static void main(String[] args) throws InterruptedException {
-
-//		try {
-//		   
-//			MqttReceiver receiver = new MqttReceiver(1, "broker/generos", new ProcessaGeneros( null) );
-//			
-//			DadosMQTT dadosMQTT = Util.getDadosMQTT();
-//			
-//			dadosMQTT.setClientId(dadosMQTT.getClientId() + receiver.getId() );
-//			
-//			/////////
-//
-//			MemoryPersistence persistence = new MemoryPersistence();
-//			MqttAsyncClient cliente = null;
-//
-//			System.out.println(Util.getDadosMQTT());
-//			
-//			cliente = new MqttAsyncClient(dadosMQTT.getBroker(), dadosMQTT.getClientId() , persistence);
-//
-//			cliente.setCallback(receiver);
-//
-//			MqttConnectOptions options = new MqttConnectOptions();
-//
-//			cliente.connect(options);
-//			
-//			Thread.sleep(3000);
-//			
-//			cliente.subscribe(receiver.getTopico() , 0);
-//			
-//			System.out.println("-------------------------------------------------------------------------------------------");
-//			System.out.println("OUVINDO TÓPICO: " + receiver.getTopico()  + " " + Util.getDateTime(ZoneId.of("America/Sao_Paulo"), "MM/dd/yyyy HH:mm:ss")  );
-//			System.out.println("-------------------------------------------------------------------------------------------");
-//			
-//
-//		} catch (MqttException e) {
-//			e.printStackTrace();
-//		}
-	}
-
 	@Override
 	public void connectionLost(Throwable cause) {
 		
@@ -135,16 +89,6 @@ public class MqttReceiver implements MqttCallback {
 		
 		processaMQTT.processaPedido(topico, mensagem);
 		
-		
-//		if(topico.startsWith("broker/generos") ) {
-//			
-//			if(mensagem.toString().length() == 0) {
-//							
-//				
-//			}else {
-//				
-//			}
-//		}
 		
 	}
 

@@ -1,6 +1,7 @@
 package br.com.etecmam.bibloteca.mqttserver;
 
 import br.com.etecmam.bibloteca.mqttserver.api.ProcessaGeneros;
+import br.com.etecmam.bibloteca.mqttserver.api.ProcessaLivrosPorGenero;
 
 public class MQTTServer {
 	
@@ -11,16 +12,10 @@ public class MQTTServer {
 		Thread thread = new Thread(dispatcher);		
 		thread.start();
 		
+		MqttReceiver recGeneros = new MqttReceiver(1, "ObsGeneroLivro", "broker/generos",  new ProcessaGeneros( dispatcher) );
 		
-		MqttReceiver receiver = new MqttReceiver(1, "broker/generos", new ProcessaGeneros( dispatcher) );
-		
-		
-//		
-//		Thread.sleep(3000);
-//		
-//		dispatcher.getFilaMQTT().add( new MqttJSON("biblio", "{MSG}") );
-		
-		
+		MqttReceiver recLivrosPorGenero = new MqttReceiver(1, "ObsLivrosPorGenero", "broker/livros-do-genero/#",  new ProcessaLivrosPorGenero( dispatcher) );
+				
 	}
 
 }
