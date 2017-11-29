@@ -112,10 +112,8 @@ public class MQTTDispatcher implements Runnable {
 
 		System.out.println(Util.getDadosMQTT() );
 		
-
-		cliente = new MqttAsyncClient(Util.getDadosMQTT().getBroker(),
-				Util.getDadosMQTT().getClientId(), 
-				persistence);
+		
+		cliente = new MqttAsyncClient(Util.getDadosMQTT().getBroker(), Util.getDadosMQTT().getClientId(), persistence);
 
 		MqttConnectOptions connOpts = new MqttConnectOptions();
 

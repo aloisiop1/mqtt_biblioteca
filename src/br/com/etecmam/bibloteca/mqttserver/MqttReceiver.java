@@ -42,20 +42,28 @@ public class MqttReceiver implements MqttCallback {
 
 			System.out.println(Util.getDadosMQTT());
 			
-			cliente = new MqttAsyncClient(Util.getDadosMQTT().getBroker(), clienteID , persistence);
+			cliente = new MqttAsyncClient(Util.getDadosMQTT().getBroker(), clienteID, persistence);
 
 			cliente.setCallback(this);
 
-			MqttConnectOptions options = new MqttConnectOptions();
-
-			cliente.connect(options);
+			MqttConnectOptions connOpts = new MqttConnectOptions();
 			
+
+			connOpts.setCleanSession(true);
+			connOpts.setUserName( Util.getDadosMQTT().getUsuario() );
+			connOpts.setPassword( Util.getDadosMQTT().getSenha().toCharArray() );
+			
+			connOpts.setConnectionTimeout(10);
+
+			cliente.connect(connOpts);		
+			
+					
 			Thread.sleep(3000);
 			
 			cliente.subscribe(this.getTopico() , 0);
 			
 			System.out.println("-------------------------------------------------------------------------------------------");
-			System.out.println("OUVINDO TÃ“PICO: " + this.getTopico()  + " " + Util.getDateTime(ZoneId.of("America/Sao_Paulo"), "MM/dd/yyyy HH:mm:ss")  );
+			System.out.println("OUVINDO TÓPICO: " + this.getTopico()  + " " + Util.getDateTime(ZoneId.of("America/Sao_Paulo"), "MM/dd/yyyy HH:mm:ss")  );
 			System.out.println("-------------------------------------------------------------------------------------------");
 			
 
