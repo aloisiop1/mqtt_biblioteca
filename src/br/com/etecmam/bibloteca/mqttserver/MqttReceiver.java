@@ -63,7 +63,7 @@ public class MqttReceiver implements MqttCallback {
 			cliente.subscribe(this.getTopico() , 0);
 			
 			System.out.println("-------------------------------------------------------------------------------------------");
-			System.out.println("OUVINDO TÓPICO: " + this.getTopico()  + " " + Util.getDateTime(ZoneId.of("America/Sao_Paulo"), "MM/dd/yyyy HH:mm:ss")  );
+			System.out.println("OUVINDO TOPICO: " + this.getTopico()  + " " + Util.getDateTime(ZoneId.of("America/Sao_Paulo"), "MM/dd/yyyy HH:mm:ss")  );
 			System.out.println("-------------------------------------------------------------------------------------------");
 			
 

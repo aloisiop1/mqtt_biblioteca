@@ -11,10 +11,9 @@ public class Util {
 	
 	static {
 
-//		dadosMQTT = new DadosMQTT("tcp://127.0.0.1:8888", "biblioMQTT", "server", "123456");
-		
-		
+//		dadosMQTT = new DadosMQTT("tcp://127.0.0.1:8888", "biblioMQTT", "server", "123456");				
 		dadosMQTT = new DadosMQTT("tcp://m12.cloudmqtt.com:10794", "server", "agtwltes", "Cah8QGELR7wh");
+		
 		
 	}
 	
